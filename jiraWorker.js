@@ -1,4 +1,5 @@
 
+const baseUrl = '/base_Url/';
 
 var bindRefreshBtn = function() {
   bindFilter1RefreshBtn();
@@ -21,7 +22,7 @@ var filterOnload = function() {
 
 var filter1Trigger = function() {
   $.ajax({
-    url: $URL,
+    url: baseUrl,
     method: 'GET',
     dataType: 'json',
     beforeSend: function(request) {
