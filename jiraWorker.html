@@ -3,58 +3,20 @@
 <head>
 <meta charset="UTF-8" />
 <title>JiraWorker</title>
-<script>
 
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="./jiraWorker.js"></script>
+
+<script>
 $(document).ready(function(){
-  
+  console.info('Pageload');
   // load all filter on load
   filterOnload();
-  
+  // bind button
   bindRefreshBtn();
 });
-
-
-var bindRefreshBtn = function() {
-  bindFilter1RefreshBtn();
-  bindFilter2RefreshBtn();
-  // ...
-}
-
-var bindFilter1RefreshBtn = function() {
-  $('#btn-filter-1-trigger').bind('click', function() {
-    filter1Trigger();
-  });
-}
-
-var filterOnload = function() {
-  filter1Trigger();
-  filter2Trigger();
-  
-  // ...
-}
-
-var filter1Trigger = function() {
-  $.ajax({
-    url:$URL,
-    method:'GET',
-    dataType: 'json',
-    beforeSend: function(request) {
-     request.setRequestHeader('Authorization', token);
-    }
-  }).done(function(result){
-    console.info(result);
-    if (result) {
-      $('#filter-1-body').empty().append(result.body);
-    }
-  }).fail(function(err){
-    console.error(err);
-  });
-}
-
-var filter2Trigger = function() {
-  // ...
-}
 </script>
+
 </head>
 
 <body>
