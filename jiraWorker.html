@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>JiraWorker</title>
+<script>
+
+$(document).ready(function(){
+  
+  // load all filter on load
+  filterOnload();
+  
+  bindRefreshBtn();
+});
+
+
+var bindRefreshBtn = function() {
+  bindFilter1RefreshBtn();
+  bindFilter2RefreshBtn();
+  // ...
+}
+
+var bindFilter1RefreshBtn = function() {
+  $('#btn-filter-1-trigger').bind('click', function() {
+    filter1Trigger();
+  });
+}
+
+var filterOnload = function() {
+  filter1Trigger();
+  filter2Trigger();
+  
+  // ...
+}
+
+var filter1Trigger = function() {
+  $.ajax({
+    url:$URL,
+    method:'GET',
+    dataType: 'json',
+    beforeSend: function(request) {
+     request.setRequestHeader('Authorization', token);
+    }
+  }).done(function(result){
+    console.info(result);
+    if (result) {
+      $('#filter-1-body').empty().append(result.body);
+    }
+  }).fail(function(err){
+    console.error(err);
+  });
+}
+
+var filter2Trigger = function() {
+  // ...
+}
+</script>
+</head>
+
+<body>
+  <div class='filter'>
+    <table>
+      <tbody>
+        <tr id='filter-1'>
+          <td><button id='btn-filter-1-trigger'>Refresh</button></td>
+          <td><div id=filter-1-name>Filter1</div></td>
+          <td>
+            <div id=filter-1-body>GG1</div>
+          </td>
+        </tr>
+        <tr id='filter-2'>
+          <td><button id='btn-filter-2-trigger'>Refresh</button></td>
+          <td><div id=filter-2-name>Filter2</div></td>
+          <td>
+            <div id=filter-2-body>GG2</div>
+          </td>
+        </tr>
+      <tbody>
+    </table>
+  </div>
+</body>
+</html>
